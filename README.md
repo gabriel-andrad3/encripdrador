@@ -2,6 +2,7 @@
 
 Encripdrador is a tool to encrypt and decrypt passwords based on Andrade's cryptography.
 
+The key point in this cryptography is to be easy enough to the password owner revert mentally, and hard enough to a curious that access the password don't be able to understand.
 
 ## How Andrade's cryptography works?
 
