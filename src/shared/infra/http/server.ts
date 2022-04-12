@@ -1,11 +1,12 @@
-import express, { Request, Response } from "express";
+import express from "express";
+import "reflect-metadata";
+
+import { passwordRoutes } from "./routes/passwords.routes";
 
 const app = express();
 
 app.use(express.json());
 
-app.get("/test", (request: Request, response: Response) => {
-  return response.send("Teste");
-});
+app.use("/passwords", passwordRoutes);
 
 app.listen(3333, () => { console.log("Server is running")});
