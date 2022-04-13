@@ -8,6 +8,7 @@ class EncryptUseCase {
 
   async execute( { password }: IPassword ): Promise<Password> {
     const encryptedPassword = this.encryptRepository.encrypt(password);
+    
     return encryptedPassword;
   }
 }
