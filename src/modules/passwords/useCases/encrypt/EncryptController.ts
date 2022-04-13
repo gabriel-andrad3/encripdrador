@@ -6,8 +6,17 @@ class EncryptController {
 
   async handle(request: Request, response: Response): Promise<Response> {
     const { password } = request.body;    
-    const encryptedPassword = await this.encryptUseCase.execute({ password });
-    return response.status(200).json(encryptedPassword);
+
+    try {
+      const encryptedPassword = await this.encryptUseCase.execute({ password });
+
+      return response.status(200).json(encryptedPassword);
+    } catch (err: any) {
+      return response.status(400).json({
+        message: err.message || 'Unexpected error'
+      });
+    }
+
   }
 }
 

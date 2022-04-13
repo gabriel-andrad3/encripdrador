@@ -1,14 +1,11 @@
 import { Router } from "express";
 
-import { EncryptController } from "../../../../modules/passwords/useCases/encrypt/EncryptController";
-import { EncryptUseCase } from "../../../../modules/passwords/useCases/encrypt/EncryptUseCase";
-
+import { encryptController } from "../../../../modules/passwords/useCases/encrypt";
 
 const passwordRoutes = Router();
 
-const encryptUseCase = new EncryptUseCase();
-const encryptController = new EncryptController(encryptUseCase);
-
-passwordRoutes.post("/encrypt", encryptController.handle);
+passwordRoutes.post("/encrypt", (request, response) => {
+  encryptController.handle(request, response);
+});
 
 export { passwordRoutes };
