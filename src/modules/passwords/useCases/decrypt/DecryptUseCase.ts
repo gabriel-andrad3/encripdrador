@@ -5,10 +5,8 @@ import { IDecryptRepository } from "../../repositories/IDecryptRepository";
 class DecryptUseCase {
   constructor(private decryptRepository: IDecryptRepository) {}
 
-  async execute( { password }: IPassword ): Promise<Password> {
-    const encryptedPassword = this.decryptRepository.decrypt(password);
-    
-    return encryptedPassword;
+  execute( { password }: IPassword ): Password {
+    return this.decryptRepository.decrypt(password);
   }
 }
 

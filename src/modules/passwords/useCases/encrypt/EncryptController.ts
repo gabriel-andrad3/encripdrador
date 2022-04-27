@@ -4,11 +4,11 @@ import { EncryptUseCase } from "./EncryptUseCase";
 class EncryptController {
   constructor(private encryptUseCase: EncryptUseCase) {}
 
-  async handle(request: Request, response: Response): Promise<Response> {
+  handle(request: Request, response: Response): Response {
     const { password } = request.body;    
 
     try {
-      const encryptedPassword = await this.encryptUseCase.execute({ password });
+      const encryptedPassword = this.encryptUseCase.execute({ password });
               
       return response.status(200).json(encryptedPassword);
     } catch (err: any) {

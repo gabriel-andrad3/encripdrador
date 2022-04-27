@@ -1,7 +1,7 @@
 import { Password } from "../entities/Password";
 
 interface IDecryptRepository {
-  decrypt(password: string): Promise<Password>;
+  decrypt(password: string): Password;
 }
 
 export { IDecryptRepository };

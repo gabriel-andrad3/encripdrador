@@ -2,9 +2,9 @@ import { Password } from "../../entities/Password";
 import { IEncryptRepository } from "../IEncryptRepository";
 
 class EncryptRepository implements IEncryptRepository {
-  private encryptedPassword:Password = new Password();
+  private encryptedPassword = new Password();
 
-  async encrypt(password: string): Promise<Password> {    
+  encrypt(password: string): Password {    
     let actualChar: string;    
     let isLetterOrNumber, isEvenPosition: boolean;
 
