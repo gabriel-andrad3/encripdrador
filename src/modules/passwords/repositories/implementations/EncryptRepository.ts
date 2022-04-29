@@ -4,12 +4,14 @@ import { IEncryptRepository } from "../IEncryptRepository";
 class EncryptRepository implements IEncryptRepository {
   private encryptedPassword = new Password();
 
-  encrypt(password: string): Password {    
+  encrypt(password: string): Password {   
+    this.encryptedPassword.password = "";
+    let iChar = 0;    
     let actualChar: string;    
     let isLetterOrNumber, isEvenPosition: boolean;
 
-    for (let iChar = 0; iChar < password.length; iChar++) {
-      actualChar = password.charAt(iChar);
+    for (let i = 0; i < password.length; i++) {
+      actualChar = password.charAt(i);
 
       isLetterOrNumber = this.isLetter(actualChar) || this.isNumber(actualChar);
 
@@ -20,10 +22,12 @@ class EncryptRepository implements IEncryptRepository {
           this.decreaseChar(actualChar);
         } else { 
           this.increaseChar(actualChar);
-        }
+        }        
       } else { // special character
         this.encryptedPassword.password += actualChar;
-      }
+        iChar--;
+      }      
+      iChar++;
     }
 
     return this.encryptedPassword;

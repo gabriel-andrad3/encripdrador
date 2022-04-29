@@ -2,14 +2,16 @@ import { Password } from "../../entities/Password";
 import { IDecryptRepository } from "../IDecryptRepository";
 
 class DecryptRepository implements IDecryptRepository {
-  private encryptedPassword = new Password();
+  private decryptedPassword = new Password();
 
   decrypt(password: string): Password {    
+    this.decryptedPassword.password = "";
+    let iChar = 0;
     let actualChar: string;    
     let isLetterOrNumber, isEvenPosition: boolean;
 
-    for (let iChar = 0; iChar < password.length; iChar++) {
-      actualChar = password.charAt(iChar);
+    for (let i = 0; i < password.length; i++) {
+      actualChar = password.charAt(i);
 
       isLetterOrNumber = this.isLetter(actualChar) || this.isNumber(actualChar);
 
@@ -20,13 +22,15 @@ class DecryptRepository implements IDecryptRepository {
           this.increaseChar(actualChar);
         } else {           
           this.decreaseChar(actualChar);
-        }
+        }        
       } else { // special character
-        this.encryptedPassword.password += actualChar;
-      }
-    }
+        this.decryptedPassword.password += actualChar;
+        iChar--;
+      }      
+      iChar++;
+    }    
 
-    return this.encryptedPassword;
+    return this.decryptedPassword;
   }
 
   isLetter(char: string): boolean {
@@ -41,10 +45,10 @@ class DecryptRepository implements IDecryptRepository {
     let previousCharAscii: string;
 
     if (this.isDecreasingSpecialCase(char)) {
-      this.encryptedPassword.password += this.treatDecreasingSpecialCase(char);
+      this.decryptedPassword.password += this.treatDecreasingSpecialCase(char);
     } else {
       previousCharAscii = String.fromCodePoint(char.charCodeAt(0) - 1);          
-      this.encryptedPassword.password += previousCharAscii;     
+      this.decryptedPassword.password += previousCharAscii;     
     }
   }
 
@@ -52,10 +56,10 @@ class DecryptRepository implements IDecryptRepository {
     let nextCharAscii: string;
 
     if (this.isIncreasingSpecialCase(char)) {
-      this.encryptedPassword.password += this.treatIncreasingSpecialCase(char);
+      this.decryptedPassword.password += this.treatIncreasingSpecialCase(char);
     } else {
       nextCharAscii = String.fromCodePoint(char.charCodeAt(0) + 1);
-      this.encryptedPassword.password += nextCharAscii; 
+      this.decryptedPassword.password += nextCharAscii; 
     }    
   }
 
