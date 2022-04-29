@@ -6,7 +6,7 @@ class DecryptRepository implements IDecryptRepository {
 
   decrypt(password: string): Password {    
     this.decryptedPassword.password = "";
-    let iChar = 0;
+    let counterLettersAndNumbers = 0;
     let actualChar: string;    
     let isLetterOrNumber, isEvenPosition: boolean;
 
@@ -16,18 +16,17 @@ class DecryptRepository implements IDecryptRepository {
       isLetterOrNumber = this.isLetter(actualChar) || this.isNumber(actualChar);
 
       if (isLetterOrNumber) {      
-        isEvenPosition = iChar % 2 == 0;
+        isEvenPosition = counterLettersAndNumbers % 2 == 0;
         
         if (isEvenPosition) { 
           this.increaseChar(actualChar);
         } else {           
           this.decreaseChar(actualChar);
-        }        
+        }    
+        counterLettersAndNumbers++;    
       } else { // special character
         this.decryptedPassword.password += actualChar;
-        iChar--;
-      }      
-      iChar++;
+      }            
     }    
 
     return this.decryptedPassword;

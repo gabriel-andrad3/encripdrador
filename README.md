@@ -6,7 +6,7 @@ The key point in this cryptography is to be easy enough to the password owner re
 
 ## How Andrade's cryptography works?
 
-## Encryption
+## 🔒 Encryption
 
 The letters are alternaly decreased and increased following the ASCII table: <br>
 The 1° letter is decreased<br>
@@ -29,9 +29,9 @@ Note that in this encryption, 4 [special cases](#special-cases) happened:
 - ISC 3
 - DSC 3
 
-## Decryption
+## 🔓 Decryption
 
-We do the opposite way: <br>
+We do the opposite flow: <br>
 The letters are alternaly increased and decreased following the ASCII table: <br>
 The 1° letter is increased<br>
 The 2° letter is decreased<br>
@@ -54,14 +54,15 @@ Note that in this encryption, 4 [special cases](#special-cases) happened:
 - ISC 3
 
 
-## Rules
+## 📏 Rules
 
 - Uppercase letters are maintained uppercase
 - Undercase letters are maintained undercase
 - Symbols (@, #, $, %, !, ~, etc) are kept the same
+- Symbols are not consider in the count to decrease and increase
 
 
-## Special cases
+## 🌟 Special cases
 
 Increasing Special Cases (ISC):
 1. Z -> A
@@ -74,6 +75,26 @@ Decreasing Special Cases (DSC):
 3. 0 -> 9
 
 
-## Status
+## 🔧 Technologies
 
-Under development 🚧
+- [Node.js](https://nodejs.org/en/)
+- [TypeScript](https://www.typescriptlang.org/)
+
+
+## 🏃‍♂️ How to run
+
+```bash
+# Clone the repository
+$ git clone https://github.com/gabriel-andrad3/encripdrador.git
+
+# Access the project folder
+$ cd encripdrador
+
+# Install the dependencies
+$ npm install
+
+# Run the application in development mode
+$ npm run dev
+
+# The server will start at port:3333 - access http://localhost:3333
+```

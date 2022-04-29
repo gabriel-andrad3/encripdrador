@@ -6,7 +6,7 @@ class EncryptRepository implements IEncryptRepository {
 
   encrypt(password: string): Password {   
     this.encryptedPassword.password = "";
-    let iChar = 0;    
+    let counterLettersAndNumbers = 0;    
     let actualChar: string;    
     let isLetterOrNumber, isEvenPosition: boolean;
 
@@ -16,18 +16,17 @@ class EncryptRepository implements IEncryptRepository {
       isLetterOrNumber = this.isLetter(actualChar) || this.isNumber(actualChar);
 
       if (isLetterOrNumber) {      
-        isEvenPosition = iChar % 2 == 0;
+        isEvenPosition = counterLettersAndNumbers % 2 == 0;
         
         if (isEvenPosition) { 
           this.decreaseChar(actualChar);
         } else { 
           this.increaseChar(actualChar);
         }        
+        counterLettersAndNumbers++;
       } else { // special character
-        this.encryptedPassword.password += actualChar;
-        iChar--;
-      }      
-      iChar++;
+        this.encryptedPassword.password += actualChar;        
+      }            
     }
 
     return this.encryptedPassword;
